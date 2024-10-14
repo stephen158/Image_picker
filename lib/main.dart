@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
@@ -40,23 +42,28 @@ class _MyAppState extends State<MyApp> {
         title: Text('Gallery',style: TextStyle(color: Colors.blue),),
         leading: Icon(Icons.menu,color: Colors.white,),
       ),
-      body:Center(
-           child: Column(
-             children: [
-               Center(child: _image == null ? Text('No Image Selected') : Image.file(_image!)),
-               const SizedBox(height: 100),
-               ElevatedButton(
-                 style: ElevatedButton.styleFrom(
-                   backgroundColor: Colors.lightBlueAccent,
-                 ),
-                   onPressed: (){
-                       _getImageFromGallery();
-                   }, child: Text('Gallery',
-                 style: TextStyle(color: Colors.white,
-                     fontWeight: FontWeight.bold,
-                     fontSize:20),),),
-               ],
-           ),
+      body:Column(
+        children: [
+          Expanded(
+            child: Container(
+              child: Center(
+                  child: _image == null ? Text('No Image Selected') : Image.file(_image!,height: 300,width: 500,)),
+            ),
+          ),
+          Container(
+            margin:EdgeInsets.all(30),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightBlueAccent,
+              ),
+                onPressed: (){
+                    _getImageFromGallery();
+                }, child: Text('Gallery',
+              style: TextStyle(color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize:20),),),
+          ),
+          ],
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: ()async{
