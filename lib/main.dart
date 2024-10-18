@@ -36,6 +36,8 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+    double Screenheight = MediaQuery.of(context).size.height;
+    double Screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
        backgroundColor: Colors.black,
@@ -47,7 +49,10 @@ class _MyAppState extends State<MyApp> {
           Expanded(
             child: Container(
               child: Center(
-                  child: _image == null ? Text('No Image Selected') : Image.file(_image!,height: 300,width: 500,)),
+                  child: _image == null ? Text('No Image Selected') :
+                  Image.file(_image!,
+                    height: Screenheight * 0.5,
+                    width: Screenwidth * 0.9,)),
             ),
           ),
           Container(
